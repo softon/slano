@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ env('APP_NAME') }}</title>
+    <link href="{{ asset('assets/libs/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Krub:wght@500&display=swap" rel="stylesheet">
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .slano {
+        font-family: 'Krub', sans-serif;
+        
+      }
+    </style>
+    {% block css %}{% endblock %}
+  </head>
+<body class="d-flex flex-column h-100">
+    
+{% include "partials/header.twig" %}
+
+<div class="container-fluid">
+  <div class="row">
+    {% include "partials/sidebar.twig" %}
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      {% block breadcrumb %}{% endblock %}
+
+      {% block content %}{% endblock %}
+      
+    </main>
+  </div>
+</div>
+
+{% include "partials/footer.twig" %}
+<script src="{{ asset('assets/libs/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+{% block scripts %}{% endblock %}
+      
+</body>
+</html>

@@ -1,0 +1,8 @@
+.env
+.vscode/
+/cache/**
+/vendor/
+/public/.user.ini
+/public/error_log
+/public/php.ini
+/public/.htaccess
