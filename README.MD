@@ -1,9 +1,26 @@
 # Slano Framework
 
+![Slano Framework](/public/assets/images/slano-logo-small.png)
+
 A simple PHP Framework for quick app development.
 
 ## Installation
-Under Development
+1. Install Composer and PHP 5.4+
+2. use `composer create-project softon/slano --prefer-dist` to create a new slano project.
+3. copy the `.env.sample` to `.env` and update the environment variables.
+4. (optional) run the below query which will create a basic authetication related tables.
+5. setup a virtual host and access the website.
+6. Done.
+
+## Libraries used in Slano Framework
+Below libraries are used for building this framework. Link to the documentation to respective packages are provided.
+
+1. **Twig** (Template Engine): [https://twig.symfony.com](https://twig.symfony.com/)
+2. **Bramus/router** (Routing Library) : [https://github.com/bramus/router](https://github.com/bramus/router)
+3. **Rakit/validation** (Validation Library) : [https://github.com/rakit/validation](https://github.com/rakit/validation)
+4. **Vlucas/phpdotenv** (Reading Environment Variables) : [https://github.com/vlucas/phpdotenv](https://github.com/vlucas/phpdotenv)
+5. **Lodev09/php-models** (Database Models) : [https://github.com/lodev09/php-models](https://github.com/lodev09/php-models)
+6. **Delight-im/auth** (Authentication Library) : [https://github.com/delight-im/PHP-Auth](https://github.com/delight-im/PHP-Auth)
 
 # SQL Database Query for Users (Optional)
 ```sql
@@ -120,6 +137,5 @@ ALTER TABLE `users_remembered`
 --
 ALTER TABLE `users_resets`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-COMMIT;
 
 ```

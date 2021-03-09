@@ -72,6 +72,62 @@ class AuthController extends Controller {
 
     }
 
+
+    public function registerForm(){
+        global $auth;
+        
+        if ($auth->isLoggedIn()) {
+            header('location: /');
+            exit();
+        }
+        echo $this->twig->render('register.twig');
+    }
+
+    public function register(){
+        global $auth;
+        $validation = $this->validator->make($_POST + $_FILES, [
+            'email' => 'required|email',
+            'username' => 'required',
+            'password' => 'required',
+        ]);
+
+        $validation->validate();
+        if ($validation->fails()) {
+            // handling errors
+            $errors = $validation->errors();
+            $_SESSION['message']['type'] = 'alert-danger';
+            $_SESSION['message']['text'] = $errors->firstOfAll();
+            header('Location: /register');
+            exit();
+        }
+
+        try {
+            $userId = $auth->register($_POST['email'], $_POST['password'], $_POST['username']);
+        
+            $_SESSION['message']['type'] = 'alert-success';
+            $_SESSION['message']['text'] = 'New account created successfully.';
+            header('Location: /login');
+            exit();
+        }
+        catch (\Delight\Auth\InvalidEmailException $e) {
+            $_SESSION['message']['text'] = 'Invalid email address';
+        }
+        catch (\Delight\Auth\InvalidPasswordException $e) {
+            $_SESSION['message']['text'] = 'Invalid password';
+        }
+        catch (\Delight\Auth\UserAlreadyExistsException $e) {
+            $_SESSION['message']['text'] = 'User already exists';
+        }
+        catch (\Delight\Auth\TooManyRequestsException $e) {
+            $_SESSION['message']['text'] = 'Too many requests';
+        }
+
+        $_SESSION['message']['type'] = 'alert-danger';
+        header('Location: /register');
+        exit();
+
+    }
+
     public function logout(){
         global $auth;
         $auth->logOut();
