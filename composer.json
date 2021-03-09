@@ -1,6 +1,7 @@
 {
     "name": "softon/slano",
     "description": "A simple PHP Framework using basic libraries.",
+    "type": "project",
     "license": "MIT",
     "authors": [
         {
